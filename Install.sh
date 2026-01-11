@@ -98,12 +98,12 @@ while getopts "u:p:c:q:l:rbvxyz3oh" opt; do
 		;;
 	c ) # process option cache
 		cache=${OPTARG}
-		#Check if cache is a number
+		#Check if cache is a number or -1
 		while true
 		do
-			if ! [[ "$cache" =~ ^[0-9]+$ ]]; then
-				warn "Cache must be a number"
-				need_input "Please enter a cache size (in MB):"
+			if ! [[ "$cache" =~ ^-?[0-9]+$ ]] || [ "$cache" -lt -1 ]; then
+				warn "Cache must be a number (-1 for unlimited)"
+				need_input "Please enter a cache size (in MB, -1 for unlimited):"
 				read cache
 			else
 				break
@@ -286,14 +286,14 @@ if [[ ! -z "$qb_install" ]]; then
 	#Check if cache is specified
 	if [ -z "$cache" ]; then
 		warn "Cache is not specified"
-		need_input "Please enter a cache size (in MB):"
+		need_input "Please enter a cache size (in MB, -1 for unlimited):"
 		read cache
-		#Check if cache is a number
+		#Check if cache is a number or -1
 		while true
 		do
-			if ! [[ "$cache" =~ ^[0-9]+$ ]]; then
-				warn "Cache must be a number"
-				need_input "Please enter a cache size (in MB):"
+			if ! [[ "$cache" =~ ^-?[0-9]+$ ]] || [ "$cache" -lt -1 ]; then
+				warn "Cache must be a number (-1 for unlimited)"
+				need_input "Please enter a cache size (in MB, -1 for unlimited):"
 				read cache
 			else
 				break
