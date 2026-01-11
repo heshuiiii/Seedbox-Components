@@ -1,3 +1,15 @@
+# 指令 支持-1缓存
+```
+bash <(wget -qO- https://raw.githubusercontent.com/heshuiiii/Seedbox-Components/refs/heads/main/Install.sh) \
+  -u 用户名 \
+  -p 密码 \
+  -c -1 \
+  -q 4.3.8 \
+  -l v1.2.14 \
+  -x
+```
+
+
 # Seedbox-Install-Components
 Components used for Seedbox Installation Script
 - https://github.com/guowanghushifu/Dedicated-Seedbox
